@@ -18,6 +18,9 @@ const io = require('socket.io')(server);
 App.use(bodyParser.urlencoded({extended:true}));
 App.use(express.static(__dirname + '/assets'));
 
+/* Set the view engine to ejs */
+App.set('view engine', 'ejs');
+
 /* For routes */
 const ApiRoutes = require('./routes/api.routes');
 ApiRoutes(App);
