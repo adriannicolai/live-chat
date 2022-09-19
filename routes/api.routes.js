@@ -1,8 +1,10 @@
-const UserRoutes = require('./users.routes');
+const UserRoutes  = require('./users.routes');
+const AdminRoutes = require('./admins.routes');
 
 let ApiRoute = (App) => {
     /* Routes for users */
-    App.use("/api/users", UserRoutes);
+    App.use("/user", UserRoutes);
+    App.use("/admin", AdminRoutes);
 }
 
 module.exports = ApiRoute;
