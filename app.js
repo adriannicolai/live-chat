@@ -9,6 +9,13 @@ const server  = App.listen(process.env.PORT || 3000, function(){
     console.log('listening at 3000!');
 });
 
+/* For loging of request url */
+App.use((req, res, next) =>{
+    console.log('req :>> ', req.url);
+
+    next();
+})
+
 /*  Socket.io for real-time
     TODO: clean later move to another folder
 */
