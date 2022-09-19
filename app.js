@@ -1,15 +1,26 @@
+/* App dependencies */
 const express    = require('express');
-const app        = express();
+const App        = express();
 const ejs        = require('ejs');
 const bodyParser = require('body-parser');
 
-const server  = app.listen(process.env.PORT || 3000, function(){
-    console.log('listening at 3000!')
+/* Start the server */
+const server  = App.listen(process.env.PORT || 3000, function(){
+    console.log('listening at 3000!');
 });
 
+/*  Socket.io for real-time
+    TODO: clean later move to another folder
+*/
 const io = require('socket.io')(server);
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static(__dirname + '/assets'));
+/* Initialize middlewares */
+App.use(bodyParser.urlencoded({extended:true}));
+App.use(express.static(__dirname + '/assets'));
 
-app.use(Router);
+/* Set the view engine to ejs */
+App.set('view engine', 'ejs');
+
+/* For routes */
+const ApiRoutes = require('./routes/api.routes');
+ApiRoutes(App);
